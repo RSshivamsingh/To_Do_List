@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ques4b</title>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="inner">
+            <p class="item"><h1>To-Do List</h1> </p>
+            <ol class="list">  
+                
+            </ol>
+            <input id="input" type="text" placeholder="add list ">
+            <button id="btn" onclick="clicked()">ADD IT!</button>
+        </div>
+    </div>
+</body> 
+</html>
+<style>
+    .outer{
+        display: flex;
+        justify-content: center;
+    }
+    .inner{
+        /* height: 500px; */
+        width: 500px;
+        background-color: rgb(76, 68, 69);
+        display: block;
+        justify-content: center;
+        text-align: center;
+        border: solid 6px gray;
+        border-radius: 20%;
+        border-top-left-radius: 5%;
+        /* border-bottom-left-radius: 5%; */
+        margin-top: 4%;
+    }
+    body
+    {
+        background-image: url(https://w0.peakpx.com/wallpaper/818/518/HD-wallpaper-black-3d-squares-geometric-patterns-squares-backgrounds-3d-squares-white-abstract-background-3d-squares-textures-squares-textures-background-with-squares.jpg) ;
+        /* background-repeat: no-repeat; */
+        background-color: bisque;        
+    }
+    h1{
+        font-size:50px;
+        font-style :italic;
+        text-decoration:underline;
+    }
+    #btn{
+        border-radius: 50%;
+        height: 40px;
+        margin-top  : 20%;
+        margin-bottom  : 20%;
+    }
+    /* li{
+        list-style-type: disc;
+    } */
+
+</style>
+<script>
+    let i=0;
+    function clicked()
+    {
+        
+        const input=document.querySelector("#input")
+        var str=input.value
+        input.value=""
+
+
+        var li=document.createElement("li")
+        li.innerText=str
+        i=i+1
+        str="new"+i
+        li.id=str ;
+        const d=document.querySelector(".list")
+        d.append(li)
+
+
+        const edit=document.createElement("button") 
+        const del=document.createElement("button") 
+        delid=del.id="del_"+ str
+        edit.id="edit_"+str
+        edit.textContent = "Edit";
+        del.textContent = "Delete";
+        // let de=document.querySelector("#new1")
+        li.append(edit)
+        edit.after(del)
+//styling 
+        del.style.backgroundColor ="black" 
+        del.style.color ="white" 
+        del.style.borderRadius="50%"
+        del.style.height="40px"
+
+        edit.style.borderRadius="50%"
+        edit.style.height="40px"
+        edit.style.width="50px"
+        edit.style.marginLeft="10%"
+        edit.style.display="inline"
+
+        li.style.fontSize="20px"
+        li.style.color="white"
+        
+    }
+    const c=document.querySelector(".list")
+    c.onclick= (evt) => {
+        console.log(evt)
+        console.log(evt.target.id)
+        let s=evt.target.id
+        if(s.includes("edit"))
+            {
+                // var n=s[s.length-1]
+                // idd="#"+"new"+n
+                
+                // let p=document.querySelector(idd)
+                const addbtn=document.querySelector("#btn")
+                const listItem = evt.target.parentNode;
+                input.value="write again"
+
+                const save=document.createElement("button")
+                save.textContent="save it"
+                addbtn.before(save)
+
+                save.onclick= (event)=>{
+                    var note=input.value
+                    input.value=""
+                    // const d=document.querySelector("#str")
+                    const textNode = listItem.firstChild;
+                    textNode.textContent=note
+                    save.remove()
+                }
+
+            }
+        else if(s.includes("del"))
+        {
+            const listItem = evt.target.parentNode;
+            console.log(listItem)
+            listItem.remove();         
+        }
+    }
+</script>
