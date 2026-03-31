@@ -11,7 +11,7 @@ RUN rm -rf ./*
 COPY index.html
 
 # Step 5: Expose port 80 to the outside world
-EXPOSE 80
+EXPOSE 8000
 
 # Step 6: Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
